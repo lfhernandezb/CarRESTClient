@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class ProvinciaComuna.
+ * @see cl.dsoft.car.data.entities.ProvinciaComuna
+ * @author Hibernate Tools
+ */
+@Stateless
+public class ProvinciaComunaHome {
+
+	private static final Log log = LogFactory.getLog(ProvinciaComunaHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(ProvinciaComuna transientInstance) {
+		log.debug("persisting ProvinciaComuna instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(ProvinciaComuna persistentInstance) {
+		log.debug("removing ProvinciaComuna instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public ProvinciaComuna merge(ProvinciaComuna detachedInstance) {
+		log.debug("merging ProvinciaComuna instance");
+		try {
+			ProvinciaComuna result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public ProvinciaComuna findById(Long id) {
+		log.debug("getting ProvinciaComuna instance with id: " + id);
+		try {
+			ProvinciaComuna instance = entityManager.find(ProvinciaComuna.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class PermisoCirculacion.
+ * @see cl.dsoft.car.data.entities.PermisoCirculacion
+ * @author Hibernate Tools
+ */
+@Stateless
+public class PermisoCirculacionHome {
+
+	private static final Log log = LogFactory.getLog(PermisoCirculacionHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(PermisoCirculacion transientInstance) {
+		log.debug("persisting PermisoCirculacion instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(PermisoCirculacion persistentInstance) {
+		log.debug("removing PermisoCirculacion instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public PermisoCirculacion merge(PermisoCirculacion detachedInstance) {
+		log.debug("merging PermisoCirculacion instance");
+		try {
+			PermisoCirculacion result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public PermisoCirculacion findById(Long id) {
+		log.debug("getting PermisoCirculacion instance with id: " + id);
+		try {
+			PermisoCirculacion instance = entityManager.find(PermisoCirculacion.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

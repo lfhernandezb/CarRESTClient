@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="hibernate.cfg.xml">
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">car2</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/car2</property>
+        <property name="hibernate.connection.username">car2</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping class="SeguroVehiculo" />
+        <mapping class="Autenticacion" />
+        <mapping class="Comuna" />
+        <mapping class="Usuario" />
+        <mapping class="CiaSeguros" />
+        <mapping class="MantencionPospuesta" />
+        <mapping class="ProveedorMantencionBase" />
+        <mapping class="CambioRevision" />
+        <mapping class="EventoMensual" />
+        <mapping class="MantencionUsuario" />
+        <mapping class="MantencionBase" />
+        <mapping class="TipoSeguro" />
+        <mapping class="Traccion" />
+        <mapping class="TipoVehiculo" />
+        <mapping class="VwCampaniaUsuario" />
+        <mapping class="UsuarioCreacion" />
+        <mapping class="Pais" />
+        <mapping class="Provincia" />
+        <mapping class="RedSocial" />
+        <mapping class="ProvinciaComuna" />
+        <mapping class="RestriccionVehicular" />
+        <mapping class="UsuarioInfo" />
+        <mapping class="Campania" />
+        <mapping class="Contingencia" />
+        <mapping class="Log" />
+        <mapping class="MantencionUsuarioHecha" />
+        <mapping class="Proveedor" />
+        <mapping class="Alerta" />
+        <mapping class="Parametro" />
+        <mapping class="PermisoCirculacion" />
+        <mapping class="Recordatorio" />
+        <mapping class="Reparacion" />
+        <mapping class="UsuarioWeb" />
+        <mapping class="TipoTransmision" />
+        <mapping class="Vehiculo" />
+        <mapping class="RevisionTecnica" />
+        <mapping class="TipGeneral" />
+        <mapping class="Combustible" />
+        <mapping class="ConsultaProveedor" />
+        <mapping class="RespuestaProveedor" />
+        <mapping class="Marca" />
+        <mapping class="Modelo" />
+        <mapping class="CampaniaUsuario" />
+        <mapping class="CargaCombustible" />
+        <mapping class="InfoSincro" />
+        <mapping class="Region" />
+        <mapping class="MantencionBaseHecha" />
+    </session-factory>
+</hibernate-configuration>

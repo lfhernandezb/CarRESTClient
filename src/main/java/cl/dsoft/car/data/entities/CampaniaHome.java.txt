@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class Campania.
+ * @see cl.dsoft.car.data.entities.Campania
+ * @author Hibernate Tools
+ */
+@Stateless
+public class CampaniaHome {
+
+	private static final Log log = LogFactory.getLog(CampaniaHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(Campania transientInstance) {
+		log.debug("persisting Campania instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(Campania persistentInstance) {
+		log.debug("removing Campania instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public Campania merge(Campania detachedInstance) {
+		log.debug("merging Campania instance");
+		try {
+			Campania result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public Campania findById(Integer id) {
+		log.debug("getting Campania instance with id: " + id);
+		try {
+			Campania instance = entityManager.find(Campania.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

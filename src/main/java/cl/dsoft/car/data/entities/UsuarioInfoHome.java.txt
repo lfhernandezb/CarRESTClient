@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class UsuarioInfo.
+ * @see cl.dsoft.car.data.entities.UsuarioInfo
+ * @author Hibernate Tools
+ */
+@Stateless
+public class UsuarioInfoHome {
+
+	private static final Log log = LogFactory.getLog(UsuarioInfoHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(UsuarioInfo transientInstance) {
+		log.debug("persisting UsuarioInfo instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(UsuarioInfo persistentInstance) {
+		log.debug("removing UsuarioInfo instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public UsuarioInfo merge(UsuarioInfo detachedInstance) {
+		log.debug("merging UsuarioInfo instance");
+		try {
+			UsuarioInfo result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public UsuarioInfo findById(Long id) {
+		log.debug("getting UsuarioInfo instance with id: " + id);
+		try {
+			UsuarioInfo instance = entityManager.find(UsuarioInfo.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

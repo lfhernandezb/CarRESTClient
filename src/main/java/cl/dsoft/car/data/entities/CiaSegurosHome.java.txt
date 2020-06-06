@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class CiaSeguros.
+ * @see cl.dsoft.car.data.entities.CiaSeguros
+ * @author Hibernate Tools
+ */
+@Stateless
+public class CiaSegurosHome {
+
+	private static final Log log = LogFactory.getLog(CiaSegurosHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(CiaSeguros transientInstance) {
+		log.debug("persisting CiaSeguros instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(CiaSeguros persistentInstance) {
+		log.debug("removing CiaSeguros instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public CiaSeguros merge(CiaSeguros detachedInstance) {
+		log.debug("merging CiaSeguros instance");
+		try {
+			CiaSeguros result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public CiaSeguros findById(Integer id) {
+		log.debug("getting CiaSeguros instance with id: " + id);
+		try {
+			CiaSeguros instance = entityManager.find(CiaSeguros.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

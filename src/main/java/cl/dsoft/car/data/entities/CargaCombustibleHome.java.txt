@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class CargaCombustible.
+ * @see cl.dsoft.car.data.entities.CargaCombustible
+ * @author Hibernate Tools
+ */
+@Stateless
+public class CargaCombustibleHome {
+
+	private static final Log log = LogFactory.getLog(CargaCombustibleHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(CargaCombustible transientInstance) {
+		log.debug("persisting CargaCombustible instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(CargaCombustible persistentInstance) {
+		log.debug("removing CargaCombustible instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public CargaCombustible merge(CargaCombustible detachedInstance) {
+		log.debug("merging CargaCombustible instance");
+		try {
+			CargaCombustible result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public CargaCombustible findById(CargaCombustibleId id) {
+		log.debug("getting CargaCombustible instance with id: " + id);
+		try {
+			CargaCombustible instance = entityManager.find(CargaCombustible.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

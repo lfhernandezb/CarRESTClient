@@ -1,0 +1,67 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class Log.
+ * @see cl.dsoft.car.data.entities.Log
+ * @author Hibernate Tools
+ */
+@Stateless
+public class LogHome {
+
+	private static final org.apache.commons.logging.Log log = LogFactory.getLog(LogHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(Log transientInstance) {
+		log.debug("persisting Log instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(Log persistentInstance) {
+		log.debug("removing Log instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public Log merge(Log detachedInstance) {
+		log.debug("merging Log instance");
+		try {
+			Log result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public Log findById(LogId id) {
+		log.debug("getting Log instance with id: " + id);
+		try {
+			Log instance = entityManager.find(Log.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

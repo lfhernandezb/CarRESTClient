@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class MantencionBase.
+ * @see cl.dsoft.car.data.entities.MantencionBase
+ * @author Hibernate Tools
+ */
+@Stateless
+public class MantencionBaseHome {
+
+	private static final Log log = LogFactory.getLog(MantencionBaseHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(MantencionBase transientInstance) {
+		log.debug("persisting MantencionBase instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(MantencionBase persistentInstance) {
+		log.debug("removing MantencionBase instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public MantencionBase merge(MantencionBase detachedInstance) {
+		log.debug("merging MantencionBase instance");
+		try {
+			MantencionBase result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public MantencionBase findById(Long id) {
+		log.debug("getting MantencionBase instance with id: " + id);
+		try {
+			MantencionBase instance = entityManager.find(MantencionBase.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

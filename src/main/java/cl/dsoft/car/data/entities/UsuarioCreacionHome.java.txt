@@ -1,0 +1,68 @@
+package cl.dsoft.car.data.entities;
+// Generated 17-05-2020 20:45:19 by Hibernate Tools 4.3.1.Final
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Home object for domain model class UsuarioCreacion.
+ * @see cl.dsoft.car.data.entities.UsuarioCreacion
+ * @author Hibernate Tools
+ */
+@Stateless
+public class UsuarioCreacionHome {
+
+	private static final Log log = LogFactory.getLog(UsuarioCreacionHome.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void persist(UsuarioCreacion transientInstance) {
+		log.debug("persisting UsuarioCreacion instance");
+		try {
+			entityManager.persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void remove(UsuarioCreacion persistentInstance) {
+		log.debug("removing UsuarioCreacion instance");
+		try {
+			entityManager.remove(persistentInstance);
+			log.debug("remove successful");
+		} catch (RuntimeException re) {
+			log.error("remove failed", re);
+			throw re;
+		}
+	}
+
+	public UsuarioCreacion merge(UsuarioCreacion detachedInstance) {
+		log.debug("merging UsuarioCreacion instance");
+		try {
+			UsuarioCreacion result = entityManager.merge(detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public UsuarioCreacion findById(Long id) {
+		log.debug("getting UsuarioCreacion instance with id: " + id);
+		try {
+			UsuarioCreacion instance = entityManager.find(UsuarioCreacion.class, id);
+			log.debug("get successful");
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+}

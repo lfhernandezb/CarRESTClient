@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!--annotation-driven /-->
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!--resources mapping="/resources/**" location="/resources/" /-->
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!--beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean-->
+	
+	<beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	   <beans:property name="messageConverters">
+	       <beans:list>
+	           <beans:ref bean="jsonConverter" />
+			   <beans:ref bean="marshallingConverter" />
+			   <beans:ref bean="atomConverter" />
+	       </beans:list>
+	   </beans:property>
+	</beans:bean>
+	 
+	<beans:bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	   <beans:property name="supportedMediaTypes" value="application/json" />
+	</beans:bean>
+	
+	<beans:bean id="marshallingConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+	<beans:constructor-arg ref="jaxbMarshaller" />
+	    <beans:property name="supportedMediaTypes" value="application/xml"/>
+	      </beans:bean>
+	 
+	      <beans:bean id="jaxbMarshaller"
+	      class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	       
+	    <beans:property name="classesToBeBound">
+	      <beans:list>
+			<beans:value>cl.dsoft.car.data.entities.Alerta</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Autenticacion</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.CambioRevision</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Campania</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.CampaniaUsuario</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.CargaCombustible</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.CargaCombustibleId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.CiaSeguros</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Combustible</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Comuna</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.ConsultaProveedor</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Contingencia</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.EventoMensual</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.InfoSincro</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Log</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.LogId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionBase</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionBaseHecha</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionBaseHechaId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionPospuesta</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionPospuestaId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionUsuario</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionUsuarioHecha</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionUsuarioHechaId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.MantencionUsuarioId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Marca</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Modelo</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Pais</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Parametro</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.PermisoCirculacion</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Proveedor</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.ProveedorMantencionBase</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Provincia</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.ProvinciaComuna</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Recordatorio</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.RecordatorioId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.RedSocial</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Region</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Reparacion</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.ReparacionId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.RespuestaProveedor</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.RestriccionVehicular</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.RevisionTecnica</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.SeguroVehiculo</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.SeguroVehiculoId</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.TipGeneral</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.TipoSeguro</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.TipoTransmision</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.TipoVehiculo</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Traccion</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Usuario</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.UsuarioCreacion</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.UsuarioInfo</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.UsuarioWeb</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.Vehiculo</beans:value>
+			<beans:value>cl.dsoft.car.data.entities.VehiculoId</beans:value>
+	        <beans:value>cl.dsoft.car.restclient.ResultMessage</beans:value>
+	        <!--beans:value>cl.dsoft.car.domain.Comuna</beans:value>
+	        <beans:value>cl.dsoft.car.domain.Pais</beans:value>
+	        <beans:value>cl.dsoft.car.domain.Region</beans:value>
+	        <beans:value>cl.dsoft.car.domain.Usuario</beans:value-->
+	      </beans:list>
+	    </beans:property>
+	     
+	</beans:bean>	
+	        
+	<beans:bean id="atomConverter" class="org.springframework.http.converter.feed.AtomFeedHttpMessageConverter">
+	<beans:property name="supportedMediaTypes" value="application/atom+xml" />
+	</beans:bean>
+
+    <context:component-scan base-package="cl.dsoft.car.rest" />
+	
+</beans:beans>
