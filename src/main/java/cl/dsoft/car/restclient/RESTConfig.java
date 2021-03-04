@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 public class RESTConfig {
 
 	private String serviceBaseURL = 
-		"http://localhost:8080/carrest/usuario/";
+		"http://localhost:8080/carrest/";
 	
 	@Autowired
 	private ApplicationContext ctx;
@@ -68,9 +68,14 @@ public class RESTConfig {
 	
 	@Bean
 	public UsuarioService usuarioService() {
-		return new UsuarioService(serviceBaseURL, restTemplate(), 
+		return new UsuarioService(serviceBaseURL + "usuario/", restTemplate(), 
 				restTemplateNoError());
 	}
 	
+	@Bean
+	public ComunaService comunaService() {
+		return new ComunaService(serviceBaseURL + "comuna/", restTemplate(), 
+				restTemplateNoError());
+	}
 	
 }

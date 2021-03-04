@@ -1,9 +1,13 @@
 package cl.dsoft.car.restclient;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import cl.dsoft.car.data.entities.Comuna;
+import cl.dsoft.car.data.entities.Usuario;
 
 public class CarRestClient {
 
@@ -12,34 +16,44 @@ public class CarRestClient {
 		ApplicationContext ctx = 
 			new AnnotationConfigApplicationContext(RESTConfig.class);
 		
-		UsuarioService service = 
+		UsuarioService serviceU = 
 			ctx.getBean(UsuarioService.class);
-		/*
-		//happy path
-		Usuario e1 = new Usuario();
-		e1.setFirstName("John");
-		e1.setLastName("smith");
-		e1.setAddress("105 Easy St.");
-		e1.setCity("Saint Louis");
-		e1.setJobTitle("Programmer");
-		e1.setHireDate(new Date());
-		e1.setState("MO");
-		e1.setZip("63101");
 		
-		e1 = service.createUsuario2(e1);
-		System.out.println(e1.toString());
-		*/
-		
-		cl.dsoft.car.data.entities.Usuario usuario = service.getUsuario(1);
+		Usuario usuario = serviceU.getUsuario(1);
 		System.out.println(usuario.toString());
 		
-		/*
-		//update
-		emp.setFirstName("Jim");
-		service.updateUsuario(emp);
-		emp = service.getUsuario(emp.getId());
-		System.out.println(emp.toString());
+		Usuario[] usuarios = serviceU.getUsuarios(1, 10, "mazda");
 		
+		System.out.println("Contents of the array: ");
+		for (Usuario element: usuarios) {
+		   System.out.println(element.toString());
+		}		
+		
+		// create
+		Usuario u = new Usuario();
+
+		ComunaService serviceC = 
+				ctx.getBean(ComunaService.class);
+		
+		Comuna comuna = serviceC.getComuna(1);
+		
+		u.setComuna(comuna);
+		
+		u.setNombre("PruebaPrueba");
+		u.setCorreo("prueba@prueba.cl");
+		u.setHombre(true);
+		
+		Usuario u2 = serviceU.createUsuario(u);
+		u2 = serviceU.getUsuario(u2.getIdUsuario());
+		System.out.println(u2.toString());
+		
+		//update
+		Usuario u3 = serviceU.getUsuario(9832);
+		u3.setTelefono("987654321");
+		serviceU.updateUsuario(u3);
+		u3 = serviceU.getUsuario(u3.getIdUsuario());
+		System.out.println(u3.toString());
+		/*
 		//delete
 		service.deleteUsuario(emp.getId());
 		System.out.println("deleted employee: " + emp.getId());		
