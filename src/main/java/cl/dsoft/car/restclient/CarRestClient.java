@@ -28,7 +28,7 @@ public class CarRestClient {
 		for (Usuario element: usuarios) {
 		   System.out.println(element.toString());
 		}		
-		
+		/*
 		// create
 		Usuario u = new Usuario();
 
@@ -46,7 +46,7 @@ public class CarRestClient {
 		Usuario u2 = serviceU.createUsuario(u);
 		u2 = serviceU.getUsuario(u2.getIdUsuario());
 		System.out.println(u2.toString());
-		
+		*/
 		//update
 		Usuario u3 = serviceU.getUsuario(9832);
 		u3.setTelefono("987654321");

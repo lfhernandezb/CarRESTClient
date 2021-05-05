@@ -68,7 +68,7 @@ public class UsuarioService {
 	
 	public boolean updateUsuario(Usuario usuario) {
 		try {
-			template.put(SERVICE_URL_TEMPLATE1, usuario, usuario.getIdUsuario());
+			template.put(SERVICE_URL, usuario, usuario.getIdUsuario());
 			return true;
 			
 		} catch(Exception e){
